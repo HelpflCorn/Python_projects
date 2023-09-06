@@ -1,5 +1,3 @@
-# Task 2
-
 # Extend Phonebook application
 
 # Functionality of Phonebook application:
@@ -11,8 +9,6 @@
 # Search by telephone number
 # Search by city or state
 # Delete a record for a given telephone number
-# Update a record for a given telephone number #not working nd don't know how to make it work
-# An option to exit the program #no need as it's all functions
  
 
 # The first argument to the application should be the name of the phonebook. Application should load JSON data, if it is present in the folder with application, else raise an error. After the user exits, all data should be saved to loaded JSON.
@@ -110,13 +106,3 @@ def delete_by_number(number, file_name):
         json.dump(file_data, file)
 
 
-# def update_by_number(number, what_to_update, file_name):          
-#     with open(file_name, "r+") as file:
-#         file_data = json.load(file)
-#         for i in file_data:
-#             if i["telephone_number"] == number:
-#                 i.update({what_to_update})
-#                 print(i)
-#         json.dump(file_data, file)
-
-# # update_by_number(9876543210, {"city":"Rzhyshchiv"}, "homework_for_lesson_11/phonebook.json")
