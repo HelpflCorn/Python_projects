@@ -75,10 +75,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': BASE_DIR / 'newschema',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "C:/Users/illia.shaban.DIR/Downloads/sample_db_sqlite.db",
         'USER': "root",
-        "PASSWORD" :"44992067",
+        "PASSWORD" :"root",
         "HOST" : "127.0.0.1",
         "PORT" : "3306"
     }
