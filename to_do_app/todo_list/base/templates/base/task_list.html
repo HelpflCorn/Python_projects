@@ -29,6 +29,8 @@
         <tr>
             <td>{{task.task_title}}</td>
             <td><a href="{% url 'task' task.id %}">View</a></td>
+            <td><a href="{% url 'task-edit' task.id %}">Edit</a></td>
+            <td><a href="{% url 'task-delete' task.id %}">Delete</a></td
         </tr>
         {%empty%}
             <h3>No items to show</h3>
