@@ -19,22 +19,42 @@
             text-align: center;
             margin: 0;
         }
+        
+        table {
+            width: 100%;
+        }
+        
+        .completed {
+            background-color: #A4BDE8;
+        }
+        
+        .not-completed {
+            background-color: #F298A6;
+        }
     </style>
 </head>
 <body>
     <h1>My to-do list</h1>
-<table>
-    <a href="{% url 'task-create' %}">Add Task</a>
-        {% for task in tasks%}
+    <table>
+        <a href="{% url 'task-create' %}">Add Task</a>
         <tr>
-            <td>{{task.task_title}}</td>
-            <td><a href="{% url 'task' task.id %}">View</a></td>
-            <td><a href="{% url 'task-edit' task.id %}">Edit</a></td>
-            <td><a href="{% url 'task-delete' task.id %}">Delete</a></td
+            <th>Task Title</th>
+            <th>Actions</th>
         </tr>
-        {%empty%}
-            <h3>No items to show</h3>
-        {%endfor%}
+        {% for task in tasks %}
+            <tr class="{% if task.complete %}completed{% else %}not-completed{% endif %}">
+                <td>{{ task.task_title }}</td>
+                <td>
+                    <a href="{% url 'task' task.id %}">View</a> |
+                    <a href="{% url 'task-edit' task.id %}">Edit</a> |
+                    <a href="{% url 'task-delete' task.id %}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="2"><h3>No items to show</h3></td>
+            </tr>
+        {% endfor %}
     </table>
 </body>
 </html>

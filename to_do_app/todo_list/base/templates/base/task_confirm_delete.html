@@ -4,5 +4,10 @@
     {%csrf_token%}
     <p>Are you sure you want to delete "{{task}}"?</p>
     <p>Task details are: "{{task.description}}", created on "{{task.created_date}}"</p>
+    {% if task.complete %}
+        <p>Task completed</p>
+    {% else %}
+        <p>Task not completed</p>
+    {% endif %}
     <input type="submit", value="Delete"/>
 </form>
