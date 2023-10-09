@@ -1,60 +1,83 @@
+{% if request.user.is_authenticated %}
+<p>{{request.user}}</p>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
+            background-color: #f8f9fa; /* Use a light gray background */
             margin: 0;
             padding: 0;
         }
-        
+
         h1 {
-            background-color: #007bff;
+            background-color: #2d8654fc;
             color: #fff;
             padding: 20px;
             text-align: center;
             margin: 0;
         }
-        
-        table {
-            width: 100%;
+
+        .container {
+            padding: 20px;
         }
-        
+
         .completed {
-            background-color: #A4BDE8;
+            background-color: linear-gradient(163deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.14469537815126055) 35%, rgba(0,212,255,1) 100%);
         }
-        
+
         .not-completed {
-            background-color: #F298A6;
+            background-color: linear-gradient(163deg, rgba(2,0,36,1) 0%, rgba(121,9,9,0.14469537815126055) 35%, rgba(255,177,0,1) 100%);
         }
     </style>
 </head>
 <body>
-    <h1>My to-do list</h1>
-    <table>
-        <a href="{% url 'task-create' %}">Add Task</a>
-        <tr>
-            <th>Task Title</th>
-            <th>Actions</th>
-        </tr>
-        {% for task in tasks %}
-            <tr class="{% if task.complete %}completed{% else %}not-completed{% endif %}">
-                <td>{{ task.task_title }}</td>
-                <td>
-                    <a href="{% url 'task' task.id %}">View</a> |
-                    <a href="{% url 'task-edit' task.id %}">Edit</a> |
-                    <a href="{% url 'task-delete' task.id %}">Delete</a>
-                </td>
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="2"><h3>No items to show</h3></td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h1>My To Do List</h1>
+
+        <div class="d-flex justify-content-center mt-4">
+            <a href="{% url 'task-create' %}" class="btn btn-light btn-lg btn-block">Add Task</a>
+        </div>
+        
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Task Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr class="{% if task.complete %}completed{% else %}not-completed{% endif %}">
+                        <td>{{ task.task_title }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Task Actions">
+                                <a href="{% url 'task' task.id %}" class="btn btn-info">View</a>
+                                <a href="{% url 'task-edit' task.id %}" class="btn btn-success">Edit</a>
+                                <a href="{% url 'task-delete' task.id %}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2"><h3>No items to show</h3></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
