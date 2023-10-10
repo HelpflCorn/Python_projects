@@ -127,15 +127,13 @@
 <body>
     <div class="header">
         <h1>To-Do List</h1>
-    </div>
-    <div class="container">
         <p>Hello, {{ request.user }}!</p>
         <p>You have <i>{{ count }}</i> incomplete task{{ count|pluralize:"s" }}</p>
-        <a href="{% url 'logout' %}" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        <hr>
-
-        <a href="{% url 'task-create' %}" class="add-task-btn"><i class="fas fa-plus"></i> Add Task</a>
-
+        <a href="{% url 'logout' %}" class="logout-link" style="color: white; font-size: larger;">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+    </div>
+    <div class="container">
         <div class="search-bar">
             <form method="GET" action="{% url 'tasks' %}">
                 <input type="text" name="search-area" value="{{ search_input }}" class="search-input" placeholder="Search tasks...">
@@ -143,6 +141,7 @@
                 <a href="{% url 'tasks' %}" class="reset-link"><i class="fas fa-undo"></i> Reset</a>
             </form>
         </div>
+        <a href="{% url 'task-create' %}" class="add-task-btn"><i class="fas fa-plus"></i> Add Task</a>
         <table class="table table-striped">
             <thead>
                 <tr>
